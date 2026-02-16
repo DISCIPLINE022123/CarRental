@@ -17,7 +17,7 @@ const app = express();
 await connectDB();
 
 // ✅ Frontend origin (dev + prod)
-const clientOrigin = process.env.CLIENT_ORIGIN || "http://localhost:5173";
+const clientOrigin = process.env.CLIENT_ORIGIN || "http://localhost:5174";
 
 // ✅ Trust proxy (important for cookies in production)
 app.set("trust proxy", 1);

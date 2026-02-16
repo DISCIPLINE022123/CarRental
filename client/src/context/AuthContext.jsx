@@ -9,18 +9,23 @@ export function AuthProvider({ children }) {
 
   const fetchUser = async () => {
     try {
+      setLoading(true);
       const data = await userApi.getData();
       setUser(data.user ?? null);
     } catch {
       setUser(null);
+    } finally {
+      setLoading(false);
     }
   };
 
   const logout = async () => {
     try {
+      setLoading(true);
       await userApi.logout();
     } finally {
       setUser(null);
+      setLoading(false);
     }
   };
 
