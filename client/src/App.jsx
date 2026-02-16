@@ -22,16 +22,19 @@ const App = () => {
   const isOwnerPath = location.pathname.startsWith('/owner')
 
   useEffect(() => {
+    // If navigation provided a `showLogin` flag in location state,
+    // just clear that flag without calling setState inside the effect
     if (location.state?.showLogin) {
-      setShowLogin(true)
       navigate(location.pathname, { replace: true, state: {} })
     }
-  }, [location.state, location.pathname, navigate])
+  }, [location, navigate])
+
+  const shouldShowLogin = location.state?.showLogin || showLogin
 
   return (
     <>
 {
-  showLogin && <Login setShowLogin={setShowLogin}/>
+  shouldShowLogin && <Login setShowLogin={setShowLogin}/>
 }
 
     
